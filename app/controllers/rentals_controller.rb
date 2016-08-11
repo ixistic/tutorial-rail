@@ -1,6 +1,7 @@
 class RentalsController < ApplicationController
   before_action :set_rental, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!, :except => [:index, :show]
+  load_and_authorize_resource
 
   # GET /rentals
   # GET /rentals.json
