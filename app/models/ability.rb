@@ -45,7 +45,7 @@ class Ability
         ​can :create, User do |u|
           ​can :update, User do |u|
             ​can :destroy, User do |u|
-                u.try(:id) == user.id
+              u.try(:id) == user.id
             end
             u.try(:id) == user.id
           end
