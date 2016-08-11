@@ -7,6 +7,7 @@ class BooksController < ApplicationController
   # GET /books.json
   def index
     @books = Book.all
+    @book = Book.new
   end
 
   # GET /books/1
@@ -37,7 +38,9 @@ class BooksController < ApplicationController
       if @book.save
         @authors = params[:book][:author_ids]
         @authors.each do |author|
-          Authorship.create(book_id:@book.id, author_id:author)
+          if author
+            Authorship.create(book_id:@book.id, author_id:author)
+          end
         end
         format.html { redirect_to @book, notice: 'Book was successfully created.' }
         format.json { render :show, status: :created, location: @book }

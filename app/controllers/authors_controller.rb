@@ -7,6 +7,7 @@ class AuthorsController < ApplicationController
   # GET /authors.json
   def index
     @authors = Author.all
+    @author = Author.new
   end
 
   # GET /authors/1

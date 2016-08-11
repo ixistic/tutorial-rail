@@ -9,9 +9,13 @@
   </head>
 
   <body>
-    <div class="container">
-      <p class="notice alert alert-success" role="alert"><%= notice %></p>
-      <p class="alert alert-warning" role="alert"><%= alert %></p>
+    <div class="container" style="padding-top:20px">
+      <% if notice %>
+        <p class="notice alert alert-success" role="alert"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-warning" role="alert"><%= alert %></p>
+      <% end %>
       <% if flash[:error] %>
         <div id="error" class="alert alert-danger">
           <%= flash[:error] %>
