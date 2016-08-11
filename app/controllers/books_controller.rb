@@ -38,7 +38,7 @@ class BooksController < ApplicationController
       if @book.save
         @authors = params[:book][:author_ids]
         @authors.each do |author|
-          if author
+          if author > '0'
             Authorship.create(book_id:@book.id, author_id:author)
           end
         end
