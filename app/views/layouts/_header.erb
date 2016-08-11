@@ -1,0 +1,12 @@
+<%= link_to 'Home', root_path %> |
+<%= link_to 'Rental', rentals_path %> |
+<% if user_signed_in? %>
+    <% if current_user.role == Role.find_by_name("Admin") %>
+
+      <%= link_to 'Book', books_path %> |
+      <%= link_to 'Publisher', publishers_path %> |
+      <%= link_to 'Author', authors_path %> |
+      <%= link_to 'Role', roles_path %> |
+      <%= link_to 'User', users_path %>
+    <% end %>
+<% end %>

@@ -1,0 +1,43 @@
+<%= form_for(book) do |f| %>
+  <% if book.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</h2>
+
+      <ul>
+      <% book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :published_date %>
+    <%= f.date_select :published_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :publisher %>
+    <%= f.collection_select(:publisher_id, Publisher.all+[Publisher.new(id:-1, name: "New Publisher")], :id, :name) %>
+    <%= text_field_tag :publisher_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :author %>
+      <%=
+        collection_check_boxes(:book, :author_ids, Author.all, :id, :name) do |b|
+          b.label(:'data-value' => b.value) { b.check_box + b.text }
+        end
+      %>
+
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @book.name %>
+</p>
+
+<p>
+  <strong>Published date:</strong>
+  <%= @book.published_date %>
+</p>
+
+<p>
+  <strong>Publisher:</strong>
+  <%= @book.publisher.name %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <% authorships = @book.authorships.includes(:author) %>
+  <% authorships.each do |authorship| %>
+    <%= authorship.author.name %> |
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_book_path(@book) %> |
+<%= link_to 'Back', books_path %>
